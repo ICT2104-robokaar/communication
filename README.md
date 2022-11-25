@@ -34,3 +34,25 @@ M5Stick C Plus
 # WebApp
 
 A simple web application created in NodeJS and EJS. For the purpose of this module, the .env is exposed in the GitHub repo as it does not host any sensitive data.
+
+NODEJS Guide
+
+Assuming that you are already in the communication folder:
+
+1. cd webapp/client
+
+- Check that there is no node_module folder, if there is delete it
+
+2. npm install
+3. cd ../
+4. cd webapp/server
+
+- Check that there is no node_module folder, if there is delete it
+
+5. npm install
+6. npm run dev
+   The URL will be exposed in the terminal, or alternatively, you may visit: http://localhost:5000/
+
+Note: If you need to view items in your current folder directory, please run the following command:
+
+- ls

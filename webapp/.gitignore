@@ -1,1 +1,4 @@
-node_modules
+# .gitignore the node modules as it will cause dependency errors
+# have user to run npm install to get the dependencies when they clone the repo
+webapp/client/node_modules
+webapp/server/node_modules
