@@ -25,11 +25,25 @@ ESP8266
 - 1x MSP432
 - 6x Jumper wires
 
+UART Configuration for ESP8266
+Baud Rate of 115200
+/* VCC = 3.3V
+ * GND = GND
+ * TX = P3.2
+ * RX = P3.3
+ * RST = P6.1
+ * CH_PD = 3.3V */ 
+
 M5Stick C Plus
 
 - 1x USB A to USB C cable
 - 1x Grove wire
 - 3x Jumper wires
+
+UART Configuration for M5Stick C Plus
+Baud Rate of 115200
+g26 UART RX pin -> p3.3 RX pin EUSCI_A2_BASE msp432 
+g0 UART TX pin -> p3.2 TX pin EUSCI_A2_BASE msp432
 
 # WebApp
 
@@ -39,19 +53,16 @@ NODEJS Guide
 
 Assuming that you are already in the communication folder:
 
-1. cd webapp/client
+1. cd web/server
 
 - Check that there is no node_module folder, if there is delete it
 
 2. npm install
-3. cd ../
-4. cd webapp/server
 
-- Check that there is no node_module folder, if there is delete it
+3. npm run dev
+   To access TCP server endpoint, you may use http://localhost:5000
+   The express webserver with UI is run on port 3001 you may visit: http://localhost:3001/ to access the dashboard.
 
-5. npm install
-6. npm run dev
-   The URL will be exposed in the terminal, or alternatively, you may visit: http://localhost:5000/
 
 Note: If you need to view items in your current folder directory, please run the following command:
 

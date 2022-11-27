@@ -48,139 +48,76 @@
  *
  *******************************************************************************/
 /* DriverLib Includes */
-#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
+#include "driverlib.h"
 
 /* Standard Includes */
 #include <stdint.h>
 #include <stdbool.h>
-#include <MSPIO.h>
-#include <stdio.h>
-#include <wchar.h>
-<<<<<<< Updated upstream
-
 
 void uPrintf(unsigned char * TxArray);
 
-=======
-#include <time.h>
-#include <string.h>
-
-void uPrintf(unsigned char * TxArray);
-
-int str_length(char str[]) {
-    // initializing count variable (stores the length of the string)
-    int count;
-
-    // incrementing the count till the end of the string
-    for (count = 0; str[count] != '\0'; ++count);
-
-    // returning the character count of the string
-    return count;
-}
-
->>>>>>> Stashed changes
 //![Simple UART Config]
 /* UART Configuration Parameter. These are the configuration parameters to
  * make the eUSCI A UART module to operate with a 9600 baud rate. These
  * values were calculated using the online calculator that TI provides at:
  * http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSP430BaudRateConverter/index.html
  */
-eUSCI_UART_ConfigV1 UART0Config = {
-  EUSCI_A_UART_CLOCKSOURCE_SMCLK,
-  13,
-  0,
-  37,
-  EUSCI_A_UART_NO_PARITY,
-  EUSCI_A_UART_LSB_FIRST,
-  EUSCI_A_UART_ONE_STOP_BIT,
-  EUSCI_A_UART_MODE,
-  EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
-};
-eUSCI_UART_ConfigV1 UART2Config =
+const eUSCI_UART_Config uartConfig =
 {
-     EUSCI_A_UART_CLOCKSOURCE_SMCLK,
-     13,
-     0,
-     37,
-     EUSCI_A_UART_NO_PARITY,
-     EUSCI_A_UART_LSB_FIRST,
-     EUSCI_A_UART_ONE_STOP_BIT,
-     EUSCI_A_UART_MODE,
-     EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
+        EUSCI_A_UART_CLOCKSOURCE_SMCLK,                 // SMCLK Clock Source
+        78,                                             // BRDIV = 78
+        2,                                              // UCxBRF = 2
+        0,                                              // UCxBRS = 0
+        EUSCI_A_UART_ODD_PARITY,                        // ODD Parity
+        EUSCI_A_UART_LSB_FIRST,                         // LSB First
+        EUSCI_A_UART_ONE_STOP_BIT,                      // One stop bit
+        EUSCI_A_UART_MODE,                              // UART mode
+        EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION,  // Oversampling
 };
 //![Simple UART Config]
-<<<<<<< Updated upstream
-=======
-int status = 0;
-
-static void Delay(uint32_t loop)
-    {
-        volatile uint32_t i;
-
-        for (i = 0 ; i < loop ; i++);
-    }
->>>>>>> Stashed changes
 
 int main(void)
 {
     /* Halting WDT  */
     WDT_A_holdTimer();
-    /*Initialize required hardware peripherals for the ESP8266*/
-        MAP_GPIO_setAsPeripheralModuleFunctionInputPin(
-                GPIO_PORT_P1, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
-        MAP_UART_initModule(EUSCI_A0_BASE, &UART0Config);
-        MAP_UART_enableModule(EUSCI_A0_BASE);
-        MAP_UART_enableInterrupt(EUSCI_A0_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT);
-        MAP_Interrupt_enableInterrupt(INT_EUSCIA0);
-    /* Selecting P3.3 and P3.2 in UART mode */
-    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P3, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
 
-    /* Setting DCO to 12MHz */
-    CS_setDCOCenteredFrequency(CS_DCO_FREQUENCY_24);
+    /* Selecting P1.2 and P1.3 in UART mode */
+    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
 
     /* Configuring UART Module */
-    UART_initModule(EUSCI_A2_BASE, &UART2Config);
+    UART_initModule(EUSCI_A0_BASE, &uartConfig);
 
     /* Enable UART module */
-    UART_enableModule(EUSCI_A2_BASE);
+    UART_enableModule(EUSCI_A0_BASE);
 
     /* Enabling interrupts (Rx) */
-    UART_enableInterrupt(EUSCI_A2_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT);
-    Interrupt_enableInterrupt(INT_EUSCIA2);
+    UART_enableInterrupt(EUSCI_A0_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT);
+    Interrupt_enableInterrupt(INT_EUSCIA0);
     Interrupt_enableMaster();
-    /* Transmit data */
-<<<<<<< Updated upstream
-    MSPrintf(EUSCI_A2_BASE, "GET HTTP/1.1\n");
-    
+
+    uPrintf("Going into LPM3\n\r");
+
     while(1)
     {
-        /* Transmit data */
-
         PCM_gotoLPM3InterruptSafe();
     }
 }
-=======
 
-    while(1)
+void uPrintf(unsigned char * TxArray)
+{
+    unsigned short i = 0;
+    while(*(TxArray+i))
     {
-            /* Transmit data */
-            char IRsensor1Value[2] = "1";
-            char IRsensor2Value[2] = "0";
-            char lWheelEncoder[2] = "0";
-            char rWheelEncoder[2] = "0";
-            time_t current_time;
-            time(&current_time);
-            char * time = ctime(&current_time);
-            //Remove all new lines from time
-            time[ str_length(time) - 1 ] = '\0';
-            
-            MSPrintf(EUSCI_A2_BASE, "{\"IRsensor1\":%s,\"IRsensor2\":%s,\"lWheelEncoder\":%s,\"rWheelEncoder\":%s,\"time\":\"%s\",\"device\":\"m5stick\"}\n", IRsensor1Value, IRsensor2Value, lWheelEncoder, rWheelEncoder, time);
-            //wait for 10 seconds
-            __delay_cycles(10000000);
-        }
-
+        UART_transmitData(EUSCI_A0_BASE, *(TxArray+i));  // Write the character at the location specified by pointer
+        i++;                                             // Increment pointer to point to the next character
     }
+}
 
+/* EUSCI A0 UART ISR */
+void EUSCIA0_IRQHandler(void)
+{
+    unsigned char a = 0;
 
->>>>>>> Stashed changes
-
+    a = UART_receiveData(EUSCI_A0_BASE);
+    UART_transmitData(EUSCI_A0_BASE, a);
+}
