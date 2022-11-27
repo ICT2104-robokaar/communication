@@ -38,7 +38,7 @@ M5Stick C Plus
 
 - 1x USB A to USB C cable
 - 1x Grove wire
-- 3x Jumper wires
+- 4x Jumper wires (2 to connect M5stick, 2 to connect MSP432)
 
 UART Configuration for M5Stick C Plus
 
