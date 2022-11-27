@@ -1,0 +1,9 @@
+"./ESP8266.obj"
+"./MSPIO.obj"
+"./UART_Driver.obj"
+"./interrupt_priority_masking.obj"
+"./startup_msp432p401r_ccs.obj"
+"./system_msp432p401r.obj"
+"../interrupt_priority_masking_ccs.cmd"
+"C:/Users/user/Desktop/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/ccs/msp432p4xx_driverlib.lib"
+-llibc.a
