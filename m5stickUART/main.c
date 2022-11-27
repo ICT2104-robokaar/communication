@@ -56,12 +56,6 @@
 #include <MSPIO.h>
 #include <stdio.h>
 #include <wchar.h>
-<<<<<<< Updated upstream
-
-
-void uPrintf(unsigned char * TxArray);
-
-=======
 #include <time.h>
 #include <string.h>
 
@@ -78,7 +72,6 @@ int str_length(char str[]) {
     return count;
 }
 
->>>>>>> Stashed changes
 //![Simple UART Config]
 /* UART Configuration Parameter. These are the configuration parameters to
  * make the eUSCI A UART module to operate with a 9600 baud rate. These
@@ -109,8 +102,6 @@ eUSCI_UART_ConfigV1 UART2Config =
      EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
 };
 //![Simple UART Config]
-<<<<<<< Updated upstream
-=======
 int status = 0;
 
 static void Delay(uint32_t loop)
@@ -119,7 +110,6 @@ static void Delay(uint32_t loop)
 
         for (i = 0 ; i < loop ; i++);
     }
->>>>>>> Stashed changes
 
 int main(void)
 {
@@ -149,17 +139,6 @@ int main(void)
     Interrupt_enableInterrupt(INT_EUSCIA2);
     Interrupt_enableMaster();
     /* Transmit data */
-<<<<<<< Updated upstream
-    MSPrintf(EUSCI_A2_BASE, "GET HTTP/1.1\n");
-    
-    while(1)
-    {
-        /* Transmit data */
-
-        PCM_gotoLPM3InterruptSafe();
-    }
-}
-=======
 
     while(1)
     {
@@ -182,5 +161,4 @@ int main(void)
     }
 
 
->>>>>>> Stashed changes
 
