@@ -41,13 +41,14 @@ M5Stick C Plus
 - 3x Jumper wires
 
 UART Configuration for M5Stick C Plus
-Baud Rate of 115200
-g26 UART RX pin -> p3.3 RX pin EUSCI_A2_BASE msp432 
-g0 UART TX pin -> p3.2 TX pin EUSCI_A2_BASE msp432
+
+- Baud Rate of 115200
+- g26 UART RX pin -> p3.3 RX pin EUSCI_A2_BASE msp432 
+- g0 UART TX pin -> p3.2 TX pin EUSCI_A2_BASE msp432
 
 # WebApp
 
-A simple web application created in NodeJS and EJS. For the purpose of this module, the .env is exposed in the GitHub repo as it does not host any sensitive data.
+A simple web application created in NodeJS and EJS. For the purpose of this module, the port number is exposed in the GitHub repo.
 
 NODEJS Guide
 
