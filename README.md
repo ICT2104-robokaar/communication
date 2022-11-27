@@ -27,12 +27,12 @@ ESP8266
 
 UART Configuration for ESP8266
 Baud Rate of 115200
-/* VCC = 3.3V
+ * VCC = 3.3V
  * GND = GND
  * TX = P3.2
  * RX = P3.3
  * RST = P6.1
- * CH_PD = 3.3V */ 
+ * CH_PD = 3.3V
 
 M5Stick C Plus
 
