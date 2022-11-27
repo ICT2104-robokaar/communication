@@ -61,8 +61,9 @@ Assuming that you are already in the communication folder:
 2. npm install
 
 3. npm run dev
-   To access TCP server endpoint, you may use http://localhost:5000
-   The express webserver with UI is run on port 3001 you may visit: http://localhost:3001/ to access the dashboard.
+   
+   - To access TCP server endpoint, you may use http://localhost:5000
+   - The express webserver with UI is run on port 3001 you may visit: http://localhost:3001/ to access the dashboard.
 
 
 Note: If you need to view items in your current folder directory, please run the following command:
