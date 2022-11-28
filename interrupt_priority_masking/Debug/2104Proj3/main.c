@@ -33,7 +33,7 @@
 // DEFINE SSID and PASS
 #define SSID "zhenxuan"
 #define SSID_PASSWORD "zhenxuan"
-#define SERVER_IP "192.168.221.54"
+#define SERVER_IP "192.168.73.54"
 #define SERVER_PORT "5000"
 int IRsensor1Status = 0;
 int IRsensor2Status = 0;
