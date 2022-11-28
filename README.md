@@ -69,3 +69,6 @@ Assuming that you are already in the communication folder:
 Note: If you need to view items in your current folder directory, please run the following command:
 
 - ls
+
+# Video
+Viewable at https://youtu.be/aBHtiGFm-Rw
